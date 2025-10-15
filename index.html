@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="./assets/index.js" defer></script>
+
+    <title>Frontend Mentor | Article preview component</title>
+  </head>
+
+  <body>
+    <main>
+      <div class="container">
+        <div class="image__section">
+          <img src="./assets/images/drawers.jpg" alt="drawers" />
+        </div>
+
+        <div class="content__section">
+          <div class="text__section">
+            <h1>
+              Shift the overall look and feel by adding these wonderful touches
+              to furniture in your home
+            </h1>
+            <p>
+              Ever been in a room and felt like something was missing? Perhaps
+              it felt slightly bare and uninviting. I’ve got some simple tips to
+              help you make any room feel complete.
+            </p>
+          </div>
+
+          <div class="author__section">
+            <div class="author__section--info">
+              <div class="avatar">
+                <img
+                  src="./assets/images/avatar-michelle.jpg"
+                  alt="Michelle Appleton"
+                />
+              </div>
+              <div class="info">
+                <span class="name">Michelle Appleton</span>
+                <span class="date">28 Jun 2020</span>
+              </div>
+            </div>
+
+            <div class="author__section--social">
+              <div class="share__text">
+                <span>Share</span>
+              </div>
+              <div class="social__icons">
+                <a href="#" class="fb__link" aria-label="Share on Facebook">
+                  <img
+                    class="fb__link--icon"
+                    src="./assets/images/icon-facebook.svg"
+                    alt="Facebook icon"
+                  />
+                </a>
+                <a href="#" class="tw__link" aria-label="Share on Twitter">
+                  <img
+                    class="tw__link--icon"
+                    src="./assets/images/icon-twitter.svg"
+                    alt="Twitter icon"
+                  />
+                </a>
+                <a href="#" class="pin__link" aria-label="Share on Pinterest">
+                  <img
+                    class="pin__link--icon"
+                    src="./assets/images/icon-pinterest.svg"
+                    alt="Pinterest icon"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="author__section--button">
+              <button class="share__button" aria-label="Share article">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="15"
+                  height="13"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M15 6.495L8.766.014V3.88H7.441C3.33 3.88 0 7.039 0 10.936v2.049l.589-.612C2.59 10.294 5.422 9.11 8.39 9.11h.375v3.867L15 6.495z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Jemali Janelidze</a>.
+      </div>
+    </footer>
+  </body>
+</html>
