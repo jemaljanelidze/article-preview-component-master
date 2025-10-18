@@ -15,13 +15,19 @@ const toggleShare = () => {
   }
 };
 
-const resetState = () => {
-  authorSectionSocial.classList.remove("show");
-  authorSectionInfo.classList.remove("hide");
-  shareButton.classList.remove("active");
-  authorSection.classList.remove("dark-bg");
-};
-
 shareButton.addEventListener("click", toggleShare);
 
-window.addEventListener("resize", resetState);
+let resizeTimer;
+
+window.addEventListener("resize", () => {
+  // Add a class to the body to disable all transitions
+  document.body.classList.add("is-resizing");
+
+  // Clear the previous timeout to reset the timer
+  clearTimeout(resizeTimer);
+
+  // Set a new timeout that will run after resizing has stopped
+  resizeTimer = setTimeout(() => {
+    document.body.classList.remove("is-resizing");
+  }, 250); // 250ms delay
+});
