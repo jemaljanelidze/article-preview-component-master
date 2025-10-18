@@ -58,7 +58,6 @@ p, .date {
 
 .image__section {
   height: 15rem;
-  overflow: hidden;
 }
 
 .image__section img {
@@ -85,7 +84,6 @@ p, .date {
   height: 5rem;
   padding: 1rem 2.4rem;
   border-radius: 0 0 1rem 1rem;
-  transition: all 0.3s;
   overflow: hidden;
 }
 
@@ -94,7 +92,8 @@ p, .date {
   align-items: center;
   gap: 1rem;
   opacity: 1;
-  transition: all 0.3s;
+  visibility: visible;
+  transition: 0.3s;
 }
 
 .avatar {
@@ -116,7 +115,8 @@ p, .date {
   padding: 1rem 0;
   max-width: 65%;
   border-radius: 10px;
-  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .share__text {
@@ -145,7 +145,7 @@ p, .date {
   border-radius: 50%;
   color: var(--desaturated-dark-blue);
   background-color: var(--light-grayish-blue);
-  transition: all 0.3s;
+  transition: 0.3s;
   cursor: pointer;
 }
 
@@ -158,6 +158,9 @@ p, .date {
 
 .author__section--social.show {
   bottom: 0.7rem;
+  opacity: 1;
+  visibility: visible;
+  transition: 0.3s;
 }
 
 .author__section--info.hide {
@@ -167,6 +170,7 @@ p, .date {
 
 .author__section.dark-bg {
   background-color: var(--very-dark-grayish-blue);
+  transition: 0.3s;
 }
 
 .attribution {
@@ -182,4 +186,68 @@ p, .date {
 
 .attribution a:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 769px) {
+  .container {
+    max-width: 65rem;
+    flex-direction: row;
+  }
+
+  .image__section {
+    width: 40%;
+    height: auto;
+  }
+
+  .image__section img {
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  .content__section {
+    width: 60%;
+    padding: 2.4rem 1rem 2.4rem 0;
+  }
+
+  .text__section,
+  .author__section {
+    padding: 1rem 4rem;
+  }
+
+  .text__section h1 {
+    font-size: 1.6rem;
+  }
+
+  .text__section p,
+  .name,
+  .date {
+    font-size: 1.1rem;
+  }
+
+  .avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .author__section {
+    overflow: visible;
+  }
+
+  .author__section--social {
+    right: -4rem;
+    bottom: 6rem !important;
+    width: 19rem;
+    padding: 1.5rem 3rem;
+    background-color: var(--very-dark-grayish-blue);
+  }
+
+  .author__section--social::after {
+    content: "";
+    position: absolute;
+    top: 4.47rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    border-top: 1rem solid var(--very-dark-grayish-blue);
+  }
 }

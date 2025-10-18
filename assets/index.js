@@ -3,9 +3,25 @@ const authorSectionSocial = document.querySelector(".author__section--social");
 const authorSectionInfo = document.querySelector(".author__section--info");
 const authorSection = document.querySelector(".author__section");
 
-shareButton.addEventListener("click", () => {
+const toggleShare = () => {
+  const isMobile = window.innerWidth <= 768;
+
   authorSectionSocial.classList.toggle("show");
-  authorSectionInfo.classList.toggle("hide");
   shareButton.classList.toggle("active");
-  authorSection.classList.toggle("dark-bg");
-});
+
+  if (isMobile) {
+    authorSectionInfo.classList.toggle("hide");
+    authorSection.classList.toggle("dark-bg");
+  }
+};
+
+const resetState = () => {
+  authorSectionSocial.classList.remove("show");
+  authorSectionInfo.classList.remove("hide");
+  shareButton.classList.remove("active");
+  authorSection.classList.remove("dark-bg");
+};
+
+shareButton.addEventListener("click", toggleShare);
+
+window.addEventListener("resize", resetState);
