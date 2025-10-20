@@ -11,7 +11,7 @@ This is a solution to the [Article preview component challenge on Frontend Mento
 # Links
 
 - Solution URL: [Click here](https://www.frontendmentor.io/solutions/faq-accordion-solution-YTmVBjR0pa)
-- Live Site URL: [Click here](https://jemaljanelidze.github.io/faq-accordion-main/)
+- Live Site URL: [Click here](https://jemaljanelidze.github.io/article-preview-component-master/)
 
 # Built with
 
