@@ -3,13 +3,17 @@ const authorSectionSocial = document.querySelector(".author__section--social");
 const authorSectionInfo = document.querySelector(".author__section--info");
 const authorSection = document.querySelector(".author__section");
 
+let isMobileAfterClick;
+
+const isMobile = () => window.innerWidth <= 768;
+
 const toggleShare = () => {
-  const isMobile = window.innerWidth <= 768;
+  isMobileAfterClick = isMobile();
 
   authorSectionSocial.classList.toggle("show");
   shareButton.classList.toggle("active");
 
-  if (isMobile) {
+  if (isMobile()) {
     authorSectionInfo.classList.toggle("hide");
     authorSection.classList.toggle("dark-bg");
   }
@@ -30,4 +34,19 @@ window.addEventListener("resize", () => {
   resizeTimer = setTimeout(() => {
     document.body.classList.remove("is-resizing");
   }, 250); // 250ms delay
+
+  // Check if the device type has changed after resizing
+  const isMobileAfterResize = isMobile();
+  let isMobileAfterLastResize = isMobileAfterClick;
+  const clicked = authorSectionSocial.classList.contains("show");
+
+  const isDifferentDeviceType = isMobileAfterResize !== isMobileAfterLastResize;
+
+  // If the user clicked the share button and the device type has changed
+  if (clicked && isDifferentDeviceType) {
+    authorSectionInfo.classList.toggle("hide");
+    authorSection.classList.toggle("dark-bg");
+  }
+
+  isMobileAfterClick = isMobileAfterResize;
 });

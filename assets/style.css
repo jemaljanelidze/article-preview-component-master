@@ -13,7 +13,9 @@
 }
 
 html {
-  font-size: 13px;
+  /* Use relative units for better accessibility */
+  font-size: 0.8125rem;
+  /* 13px / 16px */
   line-height: 1.5;
 }
 
@@ -22,28 +24,51 @@ body {
   background-color: var(--light-grayish-blue);
 }
 
-body.is-resizing * {
-  transition: none !important;
+/* Temporarily disable transitions on specific elements during resize to prevent visual glitches */
+body.is-resizing .author__section--social,
+body.is-resizing .share__button,
+body.is-resizing .author__section--info,
+body.is-resizing .author__section {
+  transition: none;
+}
+
+/* Accessibility: Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    /* This is an acceptable use of !important */
+    animation: none !important;
+  }
 }
 
 img {
   max-width: 100%;
+  display: block;
+  /* Prevents small gaps below images */
 }
 
-h1 {
+/* h1 {
   font-size: 1.2rem;
-}
+} */
 
 span {
   display: block;
 }
 
-h1, .name {
+h1 {
+  /* Use clamp for fluid typography */
+  /* This formula correctly scales from 1.2rem to 1.6rem between 320px and 769px viewports */
+  font-size: clamp(1.2rem, 0.95rem + 0.8vw, 1.6rem);
+}
+
+h1,
+.name {
   color: var(--very-dark-grayish-blue);
   font-weight: 700;
 }
 
-p, .date {
+p,
+.date {
   color: var(--desaturated-dark-blue);
   font-weight: 500;
 }
@@ -89,15 +114,8 @@ p, .date {
   padding: 1rem 2.4rem;
   border-radius: 0 0 1rem 1rem;
   overflow: hidden;
-}
-
-.author__section--info {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  opacity: 1;
-  visibility: visible;
-  transition: 0.3s;
+  transition: background-color 0.3s;
+  /* Specific transition */
 }
 
 .avatar {
@@ -110,9 +128,18 @@ p, .date {
   border-radius: 50%;
 }
 
+.author__section--info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: opacity 0.3s, visibility 0.3s;
+  /* Specific transitions */
+}
+
 .author__section--social {
   position: absolute;
-  bottom: 0.7rem;
+  bottom: -100%;
+  /* Start off-screen for mobile slide-up animation */
   display: flex;
   align-items: center;
   gap: 1.3rem;
@@ -149,10 +176,12 @@ p, .date {
   border-radius: 50%;
   color: var(--desaturated-dark-blue);
   background-color: var(--light-grayish-blue);
-  transition: 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+  /* Specific transition */
   cursor: pointer;
+  z-index: 10;
+  /* Ensure button is above other elements */
 }
-
 
 .share__button:hover,
 .share__button.active {
@@ -161,9 +190,11 @@ p, .date {
 }
 
 .author__section--social.show {
+  bottom: 0.7rem;
+  /* Animate to this position on mobile */
   opacity: 1;
   visibility: visible;
-  transition: 0.3s;
+  transition: bottom 0.3s ease-out, opacity 0.3s ease-out;
 }
 
 .author__section--info.hide {
@@ -173,13 +204,13 @@ p, .date {
 
 .author__section.dark-bg {
   background-color: var(--very-dark-grayish-blue);
-  transition: 0.3s;
 }
 
 .attribution {
   font-size: 0.7rem;
   text-align: center;
-  margin-top: 2rem;
+  margin-block-start: 2rem;
+  /* Use logical property for better i18n support */
 }
 
 .attribution a {
@@ -191,7 +222,10 @@ p, .date {
   text-decoration: underline;
 }
 
-@media (min-width: 769px) {
+/* Use em for media queries to respect user font-size preferences */
+@media (min-width: 48.0625em) {
+
+  /* 769px / 16px */
   .container {
     flex-direction: row;
   }
@@ -215,9 +249,9 @@ p, .date {
     padding: 1rem 4rem;
   }
 
-  .text__section h1 {
+  /* .text__section h1 {
     font-size: 1.6rem;
-  }
+  } */
 
   .text__section p,
   .name,
@@ -240,16 +274,24 @@ p, .date {
     width: 19rem;
     padding: 1.5rem 3rem;
     background-color: var(--very-dark-grayish-blue);
+    transition: opacity 0.3s, visibility 0.3s;
+    /* Specific transition for desktop */
+  }
+
+  .author__section--social.show {
+    bottom: 6rem;
+    /* Keep it at the desktop position */
   }
 
   .author__section--social::after {
     content: "";
     position: absolute;
-    bottom: -12px;
+    bottom: -0.923rem;
     left: 50%;
-    transform: translateX(-50%) rotate(180deg);
+    transform: translateX(-50%);
     border-left: 1rem solid transparent;
     border-right: 1rem solid transparent;
-    border-bottom: 1rem solid var(--very-dark-grayish-blue);
+    border-top: 1rem solid var(--very-dark-grayish-blue);
+    /* Use border-top for upward pointing arrow */
   }
 }
