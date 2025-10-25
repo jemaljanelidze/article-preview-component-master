@@ -36,7 +36,6 @@ body.is-resizing .author__section {
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
-    /* This is an acceptable use of !important */
     animation: none !important;
   }
 }
@@ -46,10 +45,6 @@ img {
   display: block;
   /* Prevents small gaps below images */
 }
-
-/* h1 {
-  font-size: 1.2rem;
-} */
 
 span {
   display: block;
@@ -115,7 +110,6 @@ p,
   border-radius: 0 0 1rem 1rem;
   overflow: hidden;
   transition: background-color 0.3s;
-  /* Specific transition */
 }
 
 .avatar {
@@ -133,7 +127,6 @@ p,
   align-items: center;
   gap: 1rem;
   transition: opacity 0.3s, visibility 0.3s;
-  /* Specific transitions */
 }
 
 .author__section--social {
@@ -143,11 +136,9 @@ p,
   display: flex;
   align-items: center;
   gap: 1.3rem;
-  padding: 1rem 0;
   max-width: 65%;
   border-radius: 10px;
-  opacity: 0;
-  visibility: hidden;
+  transition: bottom 0.3s, opacity 0.3s, visibility 0.3s;
 }
 
 .share__text {
@@ -177,7 +168,6 @@ p,
   color: var(--desaturated-dark-blue);
   background-color: var(--light-grayish-blue);
   transition: background-color 0.3s, color 0.3s;
-  /* Specific transition */
   cursor: pointer;
   z-index: 10;
   /* Ensure button is above other elements */
@@ -189,17 +179,15 @@ p,
   color: var(--white);
 }
 
-.author__section--social.show {
-  bottom: 0.7rem;
-  /* Animate to this position on mobile */
-  opacity: 1;
-  visibility: visible;
-  transition: bottom 0.3s ease-out, opacity 0.3s ease-out;
-}
-
-.author__section--info.hide {
+.hide {
   opacity: 0;
   visibility: hidden;
+}
+
+.author__section--social.animate {
+  bottom: 0.7rem;
+  padding: 1rem 0;
+  /* Animate to this position on mobile */
 }
 
 .author__section.dark-bg {
@@ -249,10 +237,6 @@ p,
     padding: 1rem 4rem;
   }
 
-  /* .text__section h1 {
-    font-size: 1.6rem;
-  } */
-
   .text__section p,
   .name,
   .date {
@@ -274,13 +258,6 @@ p,
     width: 19rem;
     padding: 1.5rem 3rem;
     background-color: var(--very-dark-grayish-blue);
-    transition: opacity 0.3s, visibility 0.3s;
-    /* Specific transition for desktop */
-  }
-
-  .author__section--social.show {
-    bottom: 6rem;
-    /* Keep it at the desktop position */
   }
 
   .author__section--social::after {

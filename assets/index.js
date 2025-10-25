@@ -3,19 +3,23 @@ const authorSectionSocial = document.querySelector(".author__section--social");
 const authorSectionInfo = document.querySelector(".author__section--info");
 const authorSection = document.querySelector(".author__section");
 
-let isMobileAfterClick;
+let wasMobile = false;
 
 const isMobile = () => window.innerWidth <= 768;
 
-const toggleShare = () => {
-  isMobileAfterClick = isMobile();
+const toggleMobileLayout = () => {
+  authorSectionSocial.classList.toggle("animate");
+  authorSectionInfo.classList.toggle("hide");
+  authorSection.classList.toggle("dark-bg");
+};
 
-  authorSectionSocial.classList.toggle("show");
+const toggleShare = () => {
+  authorSectionSocial.classList.toggle("hide");
   shareButton.classList.toggle("active");
 
   if (isMobile()) {
-    authorSectionInfo.classList.toggle("hide");
-    authorSection.classList.toggle("dark-bg");
+    toggleMobileLayout();
+    wasMobile = true; // Update the state for mobile
   }
 };
 
@@ -36,17 +40,13 @@ window.addEventListener("resize", () => {
   }, 250); // 250ms delay
 
   // Check if the device type has changed after resizing
-  const isMobileAfterResize = isMobile();
-  let isMobileAfterLastResize = isMobileAfterClick;
-  const clicked = authorSectionSocial.classList.contains("show");
+  const isNowMobile = isMobile();
+  const isShareOpen = !authorSectionSocial.classList.contains("hide");
 
-  const isDifferentDeviceType = isMobileAfterResize !== isMobileAfterLastResize;
+  const deviceTypeChanged = isNowMobile !== wasMobile;
 
   // If the user clicked the share button and the device type has changed
-  if (clicked && isDifferentDeviceType) {
-    authorSectionInfo.classList.toggle("hide");
-    authorSection.classList.toggle("dark-bg");
-  }
+  if (isShareOpen && deviceTypeChanged) toggleMobileLayout();
 
-  isMobileAfterClick = isMobileAfterResize;
+  wasMobile = isNowMobile; // Update the state for the next event
 });
