@@ -10,7 +10,7 @@ This is a solution to the [Article preview component challenge on Frontend Mento
 
 # Links
 
-- Solution URL: [Click here]
+- Solution URL: [Click here](https://www.frontendmentor.io/solutions/article-preview-component-7uU_yO9K56)
 - Live Site URL: [Click here](https://jemaljanelidze.github.io/article-preview-component-master/)
 
 # Built with
